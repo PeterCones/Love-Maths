@@ -9,22 +9,39 @@ document.addEventListener("DOMContentLoaded", function() {
             
             } else {
                 let gameType = this.getAttribute("data-type")
-                alert(`You clicked ${gameType}`);
+                runGame(gameType);
             }
         })
     }
+
+
 })
 
-function runGame() {
-
+function runGame(gameType) {
+    let num1 = Math.floor(Math.random()* 25 )+1 
+    let num2 = Math.floor(Math.random()* 25 )+1
+    
+    if(gameType === "addition") {
+        displayAdditionQuestion(num1, num2);
+    }
+    else if (gameType === "minus"){
+        displaySubtractQuestion(num1, num2);
+    }
+    else if (gameType === "multiply"){
+        displayMultiplyQuestion(num1, num2);
+    }
+    else if (gameType === "divide"){
+    displayDivideQuestion(num1, num2);
 }
+}
+
 
 function checkAnswer() {
 
 }
 
 function calculateCorrectAnswer() {
-
+    
 }
 
 function incrementScore() {
@@ -35,14 +52,29 @@ function incrementWrongAnswer() {
 
 }
 
-function displayAdditionQuestion() {
+function displayAdditionQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "+";
+    calculateCorrectAnswer(operand1, operand2)
 
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "-";
+}
+
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";
 
 }
 
-function displayMultiplyQuestion() {
-    
+function displayDivideQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
 }

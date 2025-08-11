@@ -11,14 +11,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 let gameType = this.getAttribute("data-type")
                 runGame(gameType);
             }
-        })
+        });
     }
+
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
 
     runGame("addition");
 
 })
 
 function runGame(gameType) {
+    
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
+
     let num1 = Math.floor(Math.random()* 25 )+1 
     let num2 = Math.floor(Math.random()* 25 )+1
     
@@ -67,7 +76,7 @@ function calculateCorrectAnswer() {
         return[operand1 - operand2, "minus"];
     }
     
-    else if (operator=== "*"){
+    else if (operator=== "x"){
         return[operand1 * operand2, "multiply"];
     }
     else if (operator=== "/"){
@@ -98,8 +107,8 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 function displaySubtractQuestion(operand1, operand2) {
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "-";
         calculateCorrectAnswer()
 
